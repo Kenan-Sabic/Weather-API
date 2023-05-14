@@ -1,18 +1,17 @@
 import express from "express";
-import currentWeatherController from "../controllers/currentWeatherController";
+import currentWeatherController from "../controllers/CurrentWeatherController";
 import historicalWeatherController from "../controllers/HistoricalWeatherController";
 import forecastController from "../controllers/ForecastController";
-const router = express.Router();
+const weatherRouter = express.Router();
 
 
-router.post('/current' , currentWeatherController );
+weatherRouter.post('/current' , currentWeatherController );
 
-router.post('/historical', historicalWeatherController);
+weatherRouter.post('/historical', historicalWeatherController);
 
-router.post('/forecast' , forecastController);
-
-
+weatherRouter.post('/forecast' , forecastController);
 
 
 
-module.exports =  router;
+
+export default weatherRouter;

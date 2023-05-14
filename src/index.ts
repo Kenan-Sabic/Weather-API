@@ -1,23 +1,23 @@
 import express, { Request, Response } from 'express';
+import { createLogger, transports, format } from "winston";
+import weatherRouter from './routes/routes';
+
 
 const app = express();
 
-app.get('/hello' , (req: Request, res: Response) =>{
-    res.send('hellow world'); 
-})
+const logger = createLogger({
+    transports: [new transports.Console() , new transports.File({ dirname: 'logs' , filename:'weather.log' })],
+    format: format.combine( 
+      format.timestamp(),
+      format.printf(({ timestamp, level, message }) => {
+        return `[${timestamp}] ${level}: ${message}`;
+      })
+    ),
+  });
 
-app.get('/weather/current' , (req:Request,res:Response) =>{
+app.get('/' , (req: Request, res: Response) =>{
+    res.send('hello world'); 
+});
 
-    res.send('current weather');
-})
-
-app.get('/weather/forecast' , (req:Request,res:Response) =>{
-
-    res.send('current weather');
-})
-
-app.get('/weather/history' , (req:Request,res:Response) =>{
-
-    res.send('current weather');
-})
+app.use('/weather' , weatherRouter );
 app.listen(5000);
