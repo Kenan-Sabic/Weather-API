@@ -1,0 +1,17 @@
+- /src
+  - /controllers
+    - CurrentWeatherController.ts
+    - ForecastController.ts
+    - HistoricalWeatherController.ts
+  - /interfaces
+    - requestBody.ts
+    - responseBody.ts
+  - /middleware
+    - loggerMiddleware.ts
+  - /routes
+    - routes.ts
+  - /utils
+    - config.ts
+    - logger.ts
+  - index.ts
+- package.json
