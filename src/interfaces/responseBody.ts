@@ -8,44 +8,16 @@ export interface CurrentWeatherResponse {
   }
   
 
-export interface forecastResponseBody {
+  export interface ForecastResponseBody {
+    forecast: {
+      date: string;
+      temperature: number;
+      description: string;
+      windSpeed: number;
+    }[];
+  }
+  
 
-    dayOne : {
-        airTemperature : string;
-        precipitation : string;
-        pressure : string;
-        humidity : string;
-        date : string;
-    };
-    dayTwo : {
-        airTemperature : string;
-        precipitation : string;
-        pressure : string;
-        humidity : string;
-        date : string;
-    };
-    dayThree : {
-        airTemperature : string;
-        precipitation : string;
-        pressure : string;
-        humidity : string;
-        date : string;
-    };
-    dayFour : {
-        airTemperature : string;
-        precipitation : string;
-        pressure : string;
-        humidity : string;
-        date : string;
-    };
-    dayFive : {
-        airTemperature : string;
-        precipitation : string;
-        pressure : string;
-        humidity : string;
-        date : string;
-    };
-}
 
 export interface historicalResponseBody {
     dayOne : {
