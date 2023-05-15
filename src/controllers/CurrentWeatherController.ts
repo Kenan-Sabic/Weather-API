@@ -1,9 +1,28 @@
-import { Express, Request, Response } from "express";
-import { currentResponseBody } from "../interfaces/responseBody";
-import { RequestBody } from "../interfaces/requestBody";
-const config = require('../utils/config');
-export default async function currentWeatherController(req: Request , res: Response) {
-    
+import { Request, Response } from 'express';
+import axios from 'axios';
+import { API_BASE_URL } from '../utils/config';
+import { CurrentWeatherRequest } from '../interfaces/requestBody';
+import { CurrentWeatherResponse } from '../interfaces/responseBody';
 
-    
-}
+const getCurrentWeather = async (req: Request<CurrentWeatherRequest>, res: Response) => {
+  try {
+    const city  = req.body.city;
+
+    const response = await axios.get(`${API_BASE_URL}/weather?q=${city}&appid=${process.env.API_KEY}`);
+
+    const responseBody: CurrentWeatherResponse = {
+      temperature: response.data.main.temp,
+      description: response.data.weather[0].description,
+      windSpeed: response.data.wind.speed,
+      cityName: response.data.name,
+      countryCode: response.data.sys.country
+    };
+
+    res.status(200).json(responseBody);
+  } catch (error) {
+    console.error('Error fetching current weather data:', error);
+    res.status(500).send('Error fetching current weather data');
+  }
+};
+
+export default getCurrentWeather;

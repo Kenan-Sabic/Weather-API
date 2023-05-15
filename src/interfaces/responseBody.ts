@@ -1,15 +1,12 @@
-export interface currentResponseBody {
-
-    airTemperature : string;
-    precipitation : string;
-    windSpeed : string;
-    windDirection : string;
-    pressure : string;
-    humidity: string;
-
-
-
-}
+// interfaces/responseBody.ts
+export interface CurrentWeatherResponse {
+    temperature: number;
+    description: string;
+    windSpeed: number;
+    cityName: string;
+    countryCode: string;
+  }
+  
 
 export interface forecastResponseBody {
 

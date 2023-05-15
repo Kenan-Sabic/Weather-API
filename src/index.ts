@@ -1,23 +1,21 @@
 import express, { Request, Response } from 'express';
-import { createLogger, transports, format } from "winston";
+import loggerMiddleware from './middleware/loggerMiddleware';
 import weatherRouter from './routes/routes';
-
+import 'dotenv/config';
+import getCurrentWeather from './controllers/CurrentWeatherController';
 
 const app = express();
 
-const logger = createLogger({
-    transports: [new transports.Console() , new transports.File({ dirname: 'logs' , filename:'weather.log' })],
-    format: format.combine( 
-      format.timestamp(),
-      format.printf(({ timestamp, level, message }) => {
-        return `[${timestamp}] ${level}: ${message}`;
-      })
-    ),
-  });
-
-app.get('/' , (req: Request, res: Response) =>{
-    res.send('hello world'); 
+app.use(loggerMiddleware);
+app.use(express.json())
+app.get('/', (req: Request, res: Response) => {
+  res.send('hello world');
 });
 
-app.use('/weather' , weatherRouter );
-app.listen(5000);
+app.post('/weather/current', getCurrentWeather);
+
+app.use('/weather', weatherRouter);
+
+app.listen(5000, () => {
+  console.log('Server started on port 5000');
+});
