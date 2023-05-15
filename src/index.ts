@@ -3,6 +3,7 @@ import loggerMiddleware from './middleware/loggerMiddleware';
 import weatherRouter from './routes/routes';
 import 'dotenv/config';
 import getCurrentWeather from './controllers/CurrentWeatherController';
+import forecastController from './controllers/ForecastController';
 
 const app = express();
 
@@ -13,6 +14,8 @@ app.get('/', (req: Request, res: Response) => {
 });
 
 app.post('/weather/current', getCurrentWeather);
+
+app.post('/weather/forecast' , forecastController);
 
 app.use('/weather', weatherRouter);
 
