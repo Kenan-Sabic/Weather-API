@@ -6,9 +6,9 @@ export interface CurrentWeatherRequest {
   
   export interface HistoricalWeatherRequest {
     city: string;
-    startDate: string;
-    endDate: string;
+    date: string;
   }
+
   
   export interface ForecastRequest {
     city: string;

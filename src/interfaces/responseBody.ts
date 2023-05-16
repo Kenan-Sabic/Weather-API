@@ -19,47 +19,24 @@ export interface CurrentWeatherResponse {
   
 
 
-export interface historicalResponseBody {
-    dayOne : {
-        airTemperature : string;
-        precipitation : string;
-        pressure : string;
-        humidity : string;
-        date : string;
-    };
-    dayTwo : {
-        airTemperature : string;
-        precipitation : string;
-        pressure : string;
-        humidity : string;
-        date : string;
-    };
-    dayThree : {
-        airTemperature : string;
-        precipitation : string;
-        pressure : string;
-        humidity : string;
-        date : string;
-    };
-    dayFour : {
-        airTemperature : string;
-        precipitation : string;
-        pressure : string;
-        humidity : string;
-        date : string;
-    };
-    dayFive : {
-        airTemperature : string;
-        precipitation : string;
-        pressure : string;
-        humidity : string;
-        date : string;
-    };
+  export interface HistoricalWeatherResponse {
+    cityName: string;
+    historicalData: HistoricalData[];
+  }
+  
+  export interface HistoricalData {
+    date: string;
+    temperature: number;
+    description: string;
+    windSpeed: number;
+    precipitation: number;
+    pressure: number;
+    humidity: number;
+  }
 
 
 
 
-}
 export interface errorResponseBody {
     error : string;
 }
