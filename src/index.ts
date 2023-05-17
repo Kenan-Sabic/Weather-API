@@ -5,6 +5,7 @@ import 'dotenv/config';
 import getCurrentWeather from './controllers/CurrentWeatherController';
 import forecastController from './controllers/ForecastController';
 import getHistoricalWeather from './controllers/HistoricalWeatherController';
+import swaggerRouter from './swagger';
 
 const app = express();
 
@@ -13,6 +14,8 @@ app.use(express.json())
 app.get('/', (req: Request, res: Response) => {
   res.send('hello world');
 });
+
+app.use('/', swaggerRouter);
 
 app.post('/weather/current', getCurrentWeather);
 app.post('/weather/forecast' , forecastController);
