@@ -1,11 +1,11 @@
-import { Request, Response } from 'express';
+import { RequestHandler } from 'express';
+import { CurrentWeatherRequest } from '../interfaces/requestBody';
+import { CurrentWeatherResponse, errorResponseBody } from '../interfaces/responseBody';
 import axios from 'axios';
 import { API_BASE_URL } from '../utils/config';
-import { CurrentWeatherRequest } from '../interfaces/requestBody';
-import { CurrentWeatherResponse } from '../interfaces/responseBody';
 import { getCache, setCache } from '../utils/cache';
 
-const getCurrentWeather = async (req: Request<CurrentWeatherRequest>, res: Response) => {
+const getCurrentWeather: RequestHandler<{}, CurrentWeatherResponse | errorResponseBody, CurrentWeatherRequest> = async (req, res) => {
   try {
     const city = req.body.city;
 
@@ -34,7 +34,10 @@ const getCurrentWeather = async (req: Request<CurrentWeatherRequest>, res: Respo
     res.status(200).json(responseBody);
   } catch (error) {
     console.error('Error fetching current weather data:', error);
-    res.status(500).send('Error fetching current weather data');
+    const errorResponse: errorResponseBody = {
+      error: 'Error fetching current weather data'
+    };
+    res.status(500).json(errorResponse);
   }
 };
 

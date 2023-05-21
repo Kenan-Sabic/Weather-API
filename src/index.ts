@@ -6,11 +6,13 @@ import getCurrentWeather from './controllers/CurrentWeatherController';
 import forecastController from './controllers/ForecastController';
 import getHistoricalWeather from './controllers/HistoricalWeatherController';
 
+
 const app = express();
 
 app.use(loggerMiddleware);
 app.use(express.json());
 app.use('/weather', weatherRouter);
+
 
 app.get('/', (req: Request, res: Response) => {
   res.send('hello world');
