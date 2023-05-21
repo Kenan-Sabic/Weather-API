@@ -4,6 +4,7 @@ import swaggerJsDoc from 'swagger-jsdoc';
 import currentWeatherController from '../controllers/CurrentWeatherController';
 import historicalWeatherController from '../controllers/HistoricalWeatherController';
 import forecastController from '../controllers/ForecastController';
+import authenticate from '../middleware/authentication';
 
 const weatherRouter = express.Router();
 
@@ -94,7 +95,7 @@ weatherRouter.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
  *           description: The country code of the city.
  */
 
-weatherRouter.post('/current', currentWeatherController);
+weatherRouter.post('/current',authenticate, currentWeatherController);
 
 
 /**
@@ -171,7 +172,7 @@ weatherRouter.post('/current', currentWeatherController);
  *             type: number
  *             description: The humidity level in the specified city at the given date and time.
  */
-weatherRouter.post('/historical', historicalWeatherController);
+weatherRouter.post('/historical',authenticate, historicalWeatherController);
 
 /**
  * @swagger
@@ -231,6 +232,6 @@ weatherRouter.post('/historical', historicalWeatherController);
  *                 description: The wind speed for the forecasted day.
  */
 
-weatherRouter.post('/forecast', forecastController);
+weatherRouter.post('/forecast',authenticate, forecastController);
 
 export default weatherRouter;

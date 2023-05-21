@@ -4,6 +4,7 @@ import { API_BASE_URL } from '../utils/config';
 import { ForecastRequest } from '../interfaces/requestBody';
 import { ForecastResponseBody, errorResponseBody } from '../interfaces/responseBody';
 import { getCache, setCache } from '../utils/cache';
+import authenticate from '../middleware/authentication';
 
 const forecastController = async (req: Request, res: Response) => {
   try {
