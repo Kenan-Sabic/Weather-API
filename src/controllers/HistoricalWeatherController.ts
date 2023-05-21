@@ -5,6 +5,7 @@ import { getCoordinates } from '../utils/geocoding';
 import { convertToUnixTimestamp } from '../utils/dateUtils';
 import { HistoricalWeatherRequest } from '../interfaces/requestBody';
 import { HistoricalWeatherResponse, HistoricalData } from '../interfaces/responseBody';
+import authenticate from '../middleware/authentication';
 
 // Create a new cache instance with a TTL of 10 minutes
 const cache = new NodeCache({ stdTTL: 600, checkperiod: 120 });

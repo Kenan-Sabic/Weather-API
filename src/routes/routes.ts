@@ -172,7 +172,7 @@ weatherRouter.post('/current',authenticate, currentWeatherController);
  *             type: number
  *             description: The humidity level in the specified city at the given date and time.
  */
-weatherRouter.post('/historical', historicalWeatherController);
+weatherRouter.post('/historical',authenticate, historicalWeatherController);
 
 /**
  * @swagger
@@ -232,6 +232,6 @@ weatherRouter.post('/historical', historicalWeatherController);
  *                 description: The wind speed for the forecasted day.
  */
 
-weatherRouter.post('/forecast', forecastController);
+weatherRouter.post('/forecast',authenticate, forecastController);
 
 export default weatherRouter;
