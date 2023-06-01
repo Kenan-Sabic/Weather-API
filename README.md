@@ -5,6 +5,8 @@ A Weather API project made as a part of a software engineering course.
 
 This API uses https://openweathermap.org/ as the weather data provider and requires the user to have access to openweathermap through an API key
 
+Both contributors are accounts owned by me.
+
 
 ## Features
 
